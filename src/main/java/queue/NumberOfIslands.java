@@ -8,18 +8,21 @@ import java.util.Queue;
  */
 public class NumberOfIslands {
 
+
     /**
      * Direction Array for checking all neighbors of
      * any node
      */
     static int[][] dirArr = {{1, 0, -1, 0}, {0, 1, 0, -1}};
 
-    static int row_size, col_size = 0;
+     int row_size, col_size = 0;
+
+     int numberOfIslands = 0;
 
     /**
      * Helper class for each Node
      */
-    static class Node {
+     class Node {
         int x, y;
 
         public Node(int x, int y) {
@@ -39,8 +42,8 @@ public class NumberOfIslands {
      * @param input   inputArr
      * @return validity status
      */
-    private static boolean isValid(int x, int y, boolean[][] visited, char[][] input) {
-        if (x < 0 || y < 0 || x >= row_size || y >= col_size) return false;
+    private  boolean isValid(int x, int y, boolean[][] visited, char[][] input) {
+        if (x < 0 || y < 0 || x >= row_size || y >= col_size || isWater(x, y, input)) return false;
         return !visited[x][y];
     }
 
@@ -52,66 +55,56 @@ public class NumberOfIslands {
      * @param input inputArr
      * @return if it is water node or not
      */
-    private static boolean isWater(int x, int y, char[][] input) {
+    private  boolean isWater(int x, int y, char[][] input) {
         return input[x][y] == '0';
     }
 
-    public static int numIslands(char[][] grid) {
-
-        int numberOfIslands = 0;
-        row_size = grid.length;
-        col_size = grid[0].length;
-
-        boolean[][] visited = new boolean[row_size][col_size];
+    public  void BFS(int x, int y, boolean[][] visited, char[][] input) {
 
         Queue<Node> nodeQueue = new LinkedList<>();
-        Queue<Node> islandQueue = new LinkedList<>();
 
         //adding first node(0,0) to nodeQueue and marking it as visited.
-        nodeQueue.add(new Node(0, 0));
-        islandQueue.add(new Node(0, 0));
-        visited[0][0] = true;
+        nodeQueue.add(new Node(x, y));
+        visited[x][y] = true;
 
-        int lastIslandQLength = 0;
+
         while (!nodeQueue.isEmpty()) {
             //deque
             Node curNode = nodeQueue.remove();
-            if (!islandQueue.isEmpty()) islandQueue.remove();
-
             int curX = curNode.x;
             int curY = curNode.y;
 
             //Checking all adjacent nodes
-
             boolean island = true;
             for (int i = 0; i < 4; i++) {
 
                 int adjX = curX + dirArr[0][i];//row
                 int adjY = curY + dirArr[1][i];//col
 
-                if (isValid(adjX, adjY, visited, grid)) {
-
-                    if (!isWater(adjX, adjY, grid)) {
-                        islandQueue.add(new Node(adjX, adjY));
-                    }
+                if (isValid(adjX, adjY, visited, input)) {
 
                     //If valid adding to queue and marking as visited
                     nodeQueue.add(new Node(adjX, adjY));
                     visited[adjX][adjY] = true;
                 }
-
-                //checking if node is island
-//                if (adjX >= 0 && adjY >= 0 && adjX < row_size && adjY < col_size && grid[adjX][adjY] != '0') {
-//                    island = false;
-//                }
-
             }
+        }
+    }
 
-            if (lastIslandQLength > 0 && islandQueue.isEmpty()) {
-                numberOfIslands++;
+    public  int numIslands(char[][] grid) {
+
+        row_size = grid.length;
+        col_size = grid[0].length;
+
+        boolean[][] visited = new boolean[row_size][col_size];
+
+        for (int i = 0; i < row_size; i++) {
+            for (int j = 0; j < col_size; j++) {
+                if (grid[i][j] == '1' && !visited[i][j]) {
+                    numberOfIslands++;
+                    BFS(i, j, visited, grid);
+                }
             }
-            lastIslandQLength = islandQueue.size();
-
         }
 
 
@@ -120,15 +113,14 @@ public class NumberOfIslands {
 
 
     //Driver for local
-    public static void main(String[] args) {
+    public  void main(String[] args) {
 
 
         char[][] grid = {
                 {'1', '1', '0', '0', '0'},
                 {'1', '1', '0', '0', '0'},
                 {'0', '0', '1', '0', '0'},
-                {'0', '0', '0', '1', '1'}
-        };
+                {'0', '0', '0', '1', '1'}};
 
         System.out.println(numIslands(grid));
 
