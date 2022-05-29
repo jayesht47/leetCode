@@ -3,11 +3,7 @@ package queue;
 import java.util.LinkedList;
 import java.util.Queue;
 
-/**
- * Simple Implementation of Queue BFS in 2d arr
- */
-public class QueueBFS {
-
+public class QueueDFS {
     static int ROW_SIZE = 0;
     static int COL_SIZE = 0;
 
@@ -21,7 +17,7 @@ public class QueueBFS {
      * Node class for maintaining each node
      */
     static class Node {
-        public int x, y;
+        private int x, y;
 
         public Node(int x, int y) {
             this.x = x;
@@ -52,15 +48,15 @@ public class QueueBFS {
      */
     public static void BFS(int x, int y, int[][] input, boolean[][] visited) {
 
-        Queue<Node> nodeQueue = new LinkedList<>();
+        Queue<QueueBFS.Node> nodeQueue = new LinkedList<>();
 
         //adding first element to queue and setting it as vitied
-        nodeQueue.add(new Node(x, y));
+        nodeQueue.add(new QueueBFS.Node(x, y));
         visited[x][y] = true;
 
         while (!nodeQueue.isEmpty()) {
             //deque
-            Node currentNode = nodeQueue.remove();
+            QueueBFS.Node currentNode = nodeQueue.remove();
             int curX = currentNode.x;
             int curY = currentNode.y;
 
@@ -76,7 +72,7 @@ public class QueueBFS {
 
                 if (isValid(adjacentX, adjacentY, visited)) {
                     //If it is a valid node adding to queue and marking as visited
-                    nodeQueue.add(new Node(adjacentX, adjacentY));
+                    nodeQueue.add(new QueueBFS.Node(adjacentX, adjacentY));
                     visited[adjacentX][adjacentY] = true;
                 }
 
@@ -93,7 +89,7 @@ public class QueueBFS {
 
         // Given input matrix
         int grid[][] =
-                        {{1, 2, 3, 4},
+                {{1, 2, 3, 4},
                         {5, 6, 7, 8},
                         {9, 10, 11, 12},
                         {13, 14, 15, 16}};
@@ -109,3 +105,4 @@ public class QueueBFS {
 
     }
 }
+
