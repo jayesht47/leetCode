@@ -1,38 +1,75 @@
 package stack;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 class MinStack {
 
+    private static class Node {
+        int value;
+        int minElement = Integer.MAX_VALUE;
+        static int globalMin = Integer.MAX_VALUE;
+
+        public String toString() {
+            return "Node{" +
+                    "data :: " + value + "" +
+                    " minElement :: " + minElement + "}";
+        }
+
+        private void setMin(int data) {
+            if (globalMin == Integer.MAX_VALUE) {
+                globalMin = data;
+            } else {
+                globalMin = Math.min(data, globalMin);
+            }
+
+        }
+
+        Node(int value) {
+            this.value = value;
+            this.minElement = Math.min(this.minElement, value);
+            setMin(value);
+            this.minElement = Math.min(globalMin, this.minElement);
+        }
+
+
+    }
+
     private int minElem;
-    private List<Integer> data;
+    private List<Node> data;
 
     public MinStack() {
         data = new LinkedList<>();
         minElem = Integer.MAX_VALUE;
+        Node.globalMin = Integer.MAX_VALUE;
     }
 
     public void push(int val) {
         minElem = Math.min(val, minElem);
-        data.add(val);
+        Node temp = new Node(val);
+        data.add(temp);
     }
 
     public void pop() {
-        data.remove(data.size() - 1);
-        minElem = Integer.MAX_VALUE;
-        for (Integer datum : data) {
-            minElem = datum < minElem ? datum : minElem;
+
+        boolean lastLargestRemoved = false;
+
+        if (!data.isEmpty() && (data.get(data.size() - 1) != null) && (data.get(data.size() - 1).value) == Node.globalMin) {
+            lastLargestRemoved = true;
         }
+        data.remove(data.size() - 1);
+        if (lastLargestRemoved && !data.isEmpty() && (data.get(data.size() - 1) != null))
+            Node.globalMin = data.get(data.size() - 1).minElement;
+        if (data.size() == 0) Node.globalMin = Integer.MAX_VALUE;
+        minElem = Integer.MAX_VALUE;
     }
 
     public int top() {
-        return data.get(data.size() - 1);
+        return data.get(data.size() - 1).value;
     }
 
     public int getMin() {
-        return minElem;
+        return data.get(data.size() - 1).minElement;
     }
 
     @Override
