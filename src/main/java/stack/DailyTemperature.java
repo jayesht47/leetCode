@@ -7,15 +7,19 @@ public class DailyTemperature {
 
         for (int i = 0; i < temperatures.length; i++) {
 //            Stack<Integer> stack = new Stack<>();
-            int daysCount = 0;
+            int daysCount = 1;
+            boolean greaterFound = false;
             for (int j = i + 1; j < temperatures.length; j++) {
                 if (temperatures[j] > temperatures[i]) {
-                    daysCount++;
+                    greaterFound = true;
                     break;
                 } else
                     daysCount++;
             }
-            result[i] = daysCount;
+            if (greaterFound)
+                result[i] = daysCount;
+            else
+                result[i] = 0;
         }
         return result;
     }
