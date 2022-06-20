@@ -16,7 +16,7 @@ public class Node {
         val = _val;
         neighbors = new ArrayList<>();
     }
-    Node(int data, List<Node> neighbours) {
+    Node(int data, ArrayList<Node> neighbours) {
         this.val = data;
         this.neighbors = neighbours;
     }
