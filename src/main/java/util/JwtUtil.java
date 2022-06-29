@@ -1,8 +1,8 @@
 package util;
 
-import com.csr.core.objects.User;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import objects.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
