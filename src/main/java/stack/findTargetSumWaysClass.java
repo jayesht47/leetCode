@@ -4,6 +4,10 @@ import java.util.Arrays;
 
 public class findTargetSumWaysClass {
 
+    private int bal = 0;
+
+    
+
     private int Calculate(int[] operands, boolean[] operators) {
         int result = 0;
 
@@ -29,7 +33,7 @@ public class findTargetSumWaysClass {
 
             boolean[] operators = new boolean[nums.length];
 
-            operators[i] = false;
+            operators[i] = true;
 
             if (Calculate(nums, operators) == target)
                 result++;
