@@ -6,7 +6,7 @@ import java.util.Queue;
 /**
  * Number of Islands leetcode solution with queue BFS
  */
-public class NumberOfIslands {
+public  class NumberOfIslands {
 
 
     /**
@@ -15,14 +15,14 @@ public class NumberOfIslands {
      */
     static int[][] dirArr = {{1, 0, -1, 0}, {0, 1, 0, -1}};
 
-     int row_size, col_size = 0;
+    static int row_size, col_size = 0;
 
-     int numberOfIslands = 0;
+    static int numberOfIslands = 0;
 
     /**
      * Helper class for each Node
      */
-     class Node {
+    static class Node {
         int x, y;
 
         public Node(int x, int y) {
@@ -42,7 +42,7 @@ public class NumberOfIslands {
      * @param input   inputArr
      * @return validity status
      */
-    private  boolean isValid(int x, int y, boolean[][] visited, char[][] input) {
+    private static boolean isValid(int x, int y, boolean[][] visited, char[][] input) {
         if (x < 0 || y < 0 || x >= row_size || y >= col_size || isWater(x, y, input)) return false;
         return !visited[x][y];
     }
@@ -55,11 +55,11 @@ public class NumberOfIslands {
      * @param input inputArr
      * @return if it is water node or not
      */
-    private  boolean isWater(int x, int y, char[][] input) {
+    private static boolean isWater(int x, int y, char[][] input) {
         return input[x][y] == '0';
     }
 
-    public  void BFS(int x, int y, boolean[][] visited, char[][] input) {
+    public static void BFS(int x, int y, boolean[][] visited, char[][] input) {
 
         Queue<Node> nodeQueue = new LinkedList<>();
 
@@ -75,7 +75,6 @@ public class NumberOfIslands {
             int curY = curNode.y;
 
             //Checking all adjacent nodes
-            boolean island = true;
             for (int i = 0; i < 4; i++) {
 
                 int adjX = curX + dirArr[0][i];//row
@@ -91,7 +90,7 @@ public class NumberOfIslands {
         }
     }
 
-    public  int numIslands(char[][] grid) {
+    public static int numIslands(char[][] grid) {
 
         row_size = grid.length;
         col_size = grid[0].length;
@@ -113,7 +112,7 @@ public class NumberOfIslands {
 
 
     //Driver for local
-    public  void main(String[] args) {
+    public static void main(String[] args) {
 
 
         char[][] grid = {
