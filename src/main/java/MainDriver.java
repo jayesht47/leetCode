@@ -1,13 +1,19 @@
 import algorithms.BinarySearch;
 import algorithms.IsBadVersion;
+import algorithms.RotateArray;
 import algorithms.SearchInsertPosition;
+
+import java.util.Arrays;
 
 public class MainDriver {
 
     public static void main(String[] args) {
-        SearchInsertPosition s = new SearchInsertPosition();
-        int[] nums = {1,3,5,6};
-        int target = 7;
-        System.out.println(s.searchInsert(nums, target));
+        RotateArray r = new RotateArray();
+        int[] nums = {-1,2};
+        int k = 3;
+        Arrays.stream(nums).forEach(System.out::print);
+        System.out.println();
+        r.rotate(nums, k);
+        Arrays.stream(nums).forEach(System.out::print);
     }
 }
