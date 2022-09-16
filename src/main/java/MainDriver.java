@@ -1,19 +1,15 @@
-import algorithms.BinarySearch;
-import algorithms.IsBadVersion;
-import algorithms.RotateArray;
-import algorithms.SearchInsertPosition;
+import algorithms.*;
 
 import java.util.Arrays;
 
 public class MainDriver {
 
     public static void main(String[] args) {
-        RotateArray r = new RotateArray();
-        int[] nums = {1,2,3,4,5,6,7};
-        int k = 3;
+        MoveZeroes mz = new MoveZeroes();
+        int[] nums = {0,1,0,3,12};
         Arrays.stream(nums).forEach(System.out::print);
         System.out.println();
-        r.rotate(nums, k);
+        mz.moveZeroes(nums);
         Arrays.stream(nums).forEach(System.out::print);
     }
 }
