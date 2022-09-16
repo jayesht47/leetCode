@@ -1,11 +1,11 @@
 import algorithms.BinarySearch;
+import ds.MaximumSubarray;
 
 public class MainDriver {
 
     public static void main(String[] args) {
-        BinarySearch bs = new BinarySearch();
-        int[] nums = {2,5};
-        int target = 2;
-        System.out.println(bs.search(nums, target));
+        MaximumSubarray ms = new MaximumSubarray();
+        int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        System.out.println(ms.maxSubArray(nums));
     }
 }
