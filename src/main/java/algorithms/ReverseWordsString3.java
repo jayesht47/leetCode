@@ -9,7 +9,7 @@ public class ReverseWordsString3 {
         for (int i = 0; i < splittedS.length; i++) {
             splittedS[i] = reverseString(splittedS[i]);
         }
-        return String.join(" ", splittedS).toString();
+        return String.join(" ", splittedS);
     }
 
     private String reverseString(String s) {
