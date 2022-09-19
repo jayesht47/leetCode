@@ -4,26 +4,31 @@ import java.util.Stack;
 
 public class MyQueue {
 
-    Stack<Integer> stack1 = new Stack<>();
-    Stack<Integer> stack2 = new Stack<>();
-
+    Stack<Integer> stack1;
+    Stack<Integer> stack2;
+    Integer firstElement;
 
     public MyQueue() {
+        stack1 = new Stack<>();
+        stack2 = new Stack<>();
+        firstElement = null;
     }
 
     public void push(int x) {
-        if (stack1.size() == 0) {
-            stack1.push(x);
-        } else {
-            int size = stack1.size();
-            for (int i = 0; i < size; i++) {
-                stack2.push(stack1.pop());
+        stack1.push(x);
+        if (!stack1.isEmpty()) {
+            for (int i = 0; i < stack1.size(); i++) {
+                stack2.push(stack1.get(i));
             }
         }
-
     }
 
     public int pop() {
+        if (!stack1.isEmpty()) {
+            for (int i = 0; i < stack1.size(); i++) {
+                stack2.push(stack1.pop());
+            }
+        }
         return stack2.pop();
     }
 
@@ -32,15 +37,16 @@ public class MyQueue {
     }
 
     public boolean empty() {
-
         return stack2.isEmpty();
     }
-
-    @Override
-    public String toString() {
-        return "MyQueue{" +
-                "stack1=" + stack1 +
-                ", stack2=" + stack2 +
-                '}';
-    }
 }
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue obj = new MyQueue();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.peek();
+ * boolean param_4 = obj.empty();
+ */
+
