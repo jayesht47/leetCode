@@ -11,6 +11,6 @@ public class MainDriver {
         ListNode.printList(head);
         System.out.println();
         RemoveNodeFromEndList m = new RemoveNodeFromEndList();
-        ListNode.printList((m.removeNthFromEnd(head, 5)));
+        ListNode.printList((m.removeNthFromEnd(head, 2)));
     }
 }

@@ -4,7 +4,7 @@ import algoDep.ListNode;
 
 public class RemoveNodeFromEndList {
 
-    public ListNode removeNthFromEnd(ListNode head, int n) {
+    public ListNode removeNthFromEndInit(ListNode head, int n) {
         int counter = 0;
         ListNode c = head;
         while (c.next != null) {
@@ -23,6 +23,25 @@ public class RemoveNodeFromEndList {
             c2.next = c2.next.next;
         else
             c2.next = null;
+        return head;
+    }
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode slowerNode = head;
+        ListNode fasterNode = head;
+        //moving faster node n+1 steps ahead
+        int c = 0;
+        while (c < n) {
+            c++;
+            fasterNode = fasterNode.next;
+        }
+        if (fasterNode == null)
+            return head.next;
+        while (fasterNode.next != null) {
+            fasterNode = fasterNode.next;
+            slowerNode = slowerNode.next;
+        }
+        slowerNode.next = slowerNode.next.next;
         return head;
     }
 
