@@ -31,4 +31,15 @@ public class ListNode {
     public String toString() {
         return "val is " + this.val;
     }
+
+    public static void printList(ListNode node) {
+        if (node == null)
+            throw new IllegalArgumentException("Received node as Null");
+        System.out.print("[");
+        while (node.next != null) {
+            System.out.print(node.val + "->");
+            node = node.next;
+        }
+        System.out.print(node.val + "]");
+    }
 }
