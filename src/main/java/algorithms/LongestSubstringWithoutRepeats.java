@@ -1,5 +1,8 @@
 package algorithms;
 
+/**
+ * https://leetcode.com/problems/longest-substring-without-repeating-characters
+ */
 public class LongestSubstringWithoutRepeats {
 
     public int lengthOfLongestSubstring(String s) {
