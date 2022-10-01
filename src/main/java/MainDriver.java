@@ -7,15 +7,15 @@ public class MainDriver {
 
     public static void main(String[] args) {
 
-        PermutationInString ps = new PermutationInString();
 
-        String s1 = "ab";
-        String s2 = "eidbaooo";
+        int[][] image =  {{1 , 1, 1},
+                        {1 , 1 , 0},
+                        {1 , 0 , 1}};
 
+        int[][] result = new FloodFill().floodFill(image,1,1,2);
 
-        long start = System.currentTimeMillis();
-        System.out.println(ps.checkInclusion(s1, s2));
-        System.out.println("Time taken :: " + (System.currentTimeMillis() - start));
+        FloodFill.display2DArray(result);
+
 
     }
 }
