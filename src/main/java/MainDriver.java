@@ -8,14 +8,17 @@ public class MainDriver {
     public static void main(String[] args) {
 
 
-        int[][] image =  {{1 , 1, 1},
-                        {1 , 1 , 0},
-                        {1 , 0 , 1}};
+        int[][] grid = {{0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+                        {0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
+                        {0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0},
+                        {0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}};
 
-        int[][] result = new FloodFill().floodFill(image,1,1,2);
-
-        FloodFill.display2DArray(result);
-
+        int result = new MaxAreaIsland().maxAreaOfIsland(grid);
+        System.out.println(result);
 
     }
 }
