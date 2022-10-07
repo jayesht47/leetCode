@@ -1,4 +1,5 @@
 import algoDep.ListNode;
+import algoDep.TreeNode;
 import algorithms.*;
 
 import java.util.Arrays;
@@ -7,18 +8,9 @@ public class MainDriver {
 
     public static void main(String[] args) {
 
+        Integer[] test = {1,3,2,null,5};
 
-        int[][] grid = {{0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-                        {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
-                        {0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
-                        {0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0},
-                        {0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0},
-                        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
-                        {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
-                        {0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}};
-
-        int result = new MaxAreaIsland().maxAreaOfIsland(grid);
-        System.out.println(result);
+        TreeNode.generateBinaryTreeFromArr(test);
 
     }
 }
