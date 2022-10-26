@@ -23,6 +23,7 @@ public class TreeNode {
         this.right = right;
     }
 
+
     public static TreeNode generateBinaryTreeFromArr(Integer[] input)
     {
         TreeNode root = new TreeNode();
