@@ -5,16 +5,22 @@ package algorithms;
  */
 public class IntIsPalindrome {
 
+    public int getIntLength(int input) {
+        input = Math.abs(input);
+        int len = 1;
+        while ((input = (input / 10)) > 0)
+            len++;
+        return len;
+    }
+
     public boolean isPalindrome(int x) {
-        String input = Integer.toString(x);
-        int count = 0;
-        while (count < input.length() / 2) {
-            if (input.charAt(count) == input.charAt(input.length() - 1 - count))
-                count++;
-            else
-                return false;
+        int modifiedInput = x;
+        int newNumber = 0;
+        while (modifiedInput > 0) {
+            newNumber = (newNumber * 10) + (modifiedInput % 10);
+            modifiedInput = modifiedInput / 10;
         }
-        return true;
+        return newNumber == x;
     }
 
 }
