@@ -1,15 +1,32 @@
-import algorithms.BinarySearch;
-import ds.BuyandSellStock;
-import ds.IntersectionTwoArrays2;
-import ds.MaximumSubarray;
+import stack.TwoStack;
 
-import java.util.Arrays;
 
 public class MainDriver {
 
     public static void main(String[] args) {
-        BuyandSellStock bs = new BuyandSellStock();
-        int[] prices = {1,2,4,2,5,7,2,4,9,0};
-        System.out.println(bs.maxProfit(prices));
+
+        long startTime = System.currentTimeMillis();
+
+        TwoStack twoStack = new TwoStack();
+
+        System.out.println("current twoStack is :: " + twoStack);
+        twoStack.push1(1);
+        twoStack.push2(2);
+        twoStack.push1(1);
+        twoStack.push2(2);
+        System.out.println("current twoStack is :: " + twoStack);
+
+        System.out.println(twoStack.pop1());
+
+        System.out.println("current twoStack is :: " + twoStack);
+
+        System.out.println(twoStack.pop2());
+
+        System.out.println("current twoStack is :: " + twoStack);
+        System.out.println(twoStack.pop2());
+        System.out.println("current twoStack is :: " + twoStack);
+        System.out.println("Time taken in ms :: " + (System.currentTimeMillis() - startTime));
+
+
     }
 }
