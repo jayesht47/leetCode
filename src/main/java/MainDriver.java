@@ -1,16 +1,16 @@
-import stack.InfixToPostfix;
-import stack.TwoStack;
-
+import arrays.Anagram;
+import binarytree.CustomBinaryTree;
 
 public class MainDriver {
 
     public static void main(String[] args) {
 
-        InfixToPostfix infixToPostfix = new InfixToPostfix();
+        Anagram anagram = new Anagram();
 
-        String res  = infixToPostfix.converToPostFix("A * (B + C) + D");
+        String s = "aacc";
+        String t = "ccca";
 
-        System.out.println(res);
+        System.out.println(anagram.isAnagram(s, t));
 
     }
 }
