@@ -1,22 +1,18 @@
-import arrays.Anagram;
-import arrays.GroupAnagrams;
-import arrays.TopKFreq;
-import binarytree.CustomBinaryTree;
+import arrays.ProductExceptSelf;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class MainDriver {
 
     public static void main(String[] args) {
 
-        TopKFreq topKFreq = new TopKFreq();
-        int[] nums = {1,2};
-        int k = 2;
+        ProductExceptSelf productExceptSelf = new ProductExceptSelf();
 
-        System.out.println(topKFreq.topKFrequent(nums,k));
+        int[] nums = {1, 2, 3, 0};
+
+        int[] res = productExceptSelf.productExceptSelf(nums);
+
+        Arrays.stream(res).forEach(System.out::println);
 
     }
 }
