@@ -1,14 +1,15 @@
 import arrays.LongestConsSeq;
+import twopointer.ValidPallindrome;
 
 public class MainDriver {
 
     public static void main(String[] args) {
 
-        LongestConsSeq lcs = new LongestConsSeq();
+        String s = "race a car";
 
-        int[] nums = {1,2,0,1};
+        ValidPallindrome vp = new ValidPallindrome();
 
-        System.out.println(lcs.longestConsecutive(nums));
+        System.out.println(vp.isPalindrome(s));
 
     }
 }
