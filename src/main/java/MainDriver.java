@@ -1,4 +1,5 @@
 import arrays.EncodeDecodeString;
+import arrays.LongestConsSeq;
 
 import java.util.List;
 
@@ -6,11 +7,11 @@ public class MainDriver {
 
     public static void main(String[] args) {
 
-        EncodeDecodeString eds = new EncodeDecodeString();
+        LongestConsSeq lcs = new LongestConsSeq();
 
-        String encoded = eds.encode(List.of(new String[]{"Jayesh","Thakur"}));
+        int[] nums = {1,2,0,1};
 
-        System.out.println(eds.decode(encoded));
+        System.out.println(lcs.longestConsecutive(nums));
 
     }
 }
