@@ -1,21 +1,14 @@
-import algoDep.ListNode;
-import algorithms.*;
-
-import java.util.Arrays;
+import arrays.LongestConsSeq;
 
 public class MainDriver {
 
     public static void main(String[] args) {
 
+        LongestConsSeq lcs = new LongestConsSeq();
 
-        int[][] image =  {{1 , 1, 1},
-                        {1 , 1 , 0},
-                        {1 , 0 , 1}};
+        int[] nums = {1,2,0,1};
 
-        int[][] result = new FloodFill().floodFill(image,1,1,2);
-
-        FloodFill.display2DArray(result);
-
+        System.out.println(lcs.longestConsecutive(nums));
 
     }
 }
