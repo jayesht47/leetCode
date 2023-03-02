@@ -1,14 +1,15 @@
+import twopointer.MostWaterContainer;
 import twopointer.ThreeSum;
 
 public class MainDriver {
 
     public static void main(String[] args) {
 
-        ThreeSum threeSum = new ThreeSum();
+        int[] height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
 
-        int[] nums = {-1,0,1,2,-1,-4};
+        MostWaterContainer mwc = new MostWaterContainer();
 
-        threeSum.threeSum(nums);
+        System.out.println(mwc.maxArea(height));
 
 
     }
