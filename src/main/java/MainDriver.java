@@ -1,15 +1,15 @@
-import arrays.LongestConsSeq;
-import twopointer.ValidPallindrome;
+import twopointer.ThreeSum;
 
 public class MainDriver {
 
     public static void main(String[] args) {
 
-        String s = "race a car";
+        ThreeSum threeSum = new ThreeSum();
 
-        ValidPallindrome vp = new ValidPallindrome();
+        int[] nums = {-1,0,1,2,-1,-4};
 
-        System.out.println(vp.isPalindrome(s));
+        threeSum.threeSum(nums);
+
 
     }
 }
