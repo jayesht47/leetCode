@@ -1,15 +1,14 @@
-import twopointer.MostWaterContainer;
-import twopointer.ThreeSum;
+import twopointer.TrappingRainWater;
 
 public class MainDriver {
 
     public static void main(String[] args) {
 
-        int[] height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+        TrappingRainWater trw = new TrappingRainWater();
 
-        MostWaterContainer mwc = new MostWaterContainer();
+        int[] height = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
 
-        System.out.println(mwc.maxArea(height));
+        System.out.println(trw.trap(height));
 
 
     }

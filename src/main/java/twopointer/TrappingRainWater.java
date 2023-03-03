@@ -8,7 +8,40 @@ import java.util.Arrays;
  */
 public class TrappingRainWater {
 
+    /**
+     * O(n) time and O(1) memory with 2 pointers
+     *
+     * @param height heights arr
+     * @return
+     */
     public int trap(int[] height) {
+        int waterTrapped = 0;
+        int leftPointer = 0;
+        int rightPointer = height.length - 1;
+        int leftMax = height[leftPointer];
+        int rightMax = height[rightPointer];
+
+        while (leftPointer < rightPointer) {
+            if (leftMax < rightMax) {
+                leftPointer++;
+                leftMax = Math.max(leftMax, height[leftPointer]);
+                waterTrapped += leftMax - height[leftPointer];
+            } else {
+                rightPointer--;
+                rightMax = Math.max(rightMax, height[rightPointer]);
+                waterTrapped += rightMax - height[rightPointer];
+            }
+        }
+        return waterTrapped;
+    }
+
+    /**
+     * O(n) Memory
+     *
+     * @param height height arr
+     * @return trapped water
+     */
+    public int trapOld(int[] height) {
 
         int[] leftMaxHeight = new int[height.length];
         int[] rightMaxHeight = new int[height.length];
