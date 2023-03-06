@@ -1,14 +1,17 @@
-import twopointer.TrappingRainWater;
+import stack.CarFleet;
+import stack.DailyTemperature;
 
 public class MainDriver {
 
     public static void main(String[] args) {
 
-        TrappingRainWater trw = new TrappingRainWater();
+        CarFleet carFleet = new CarFleet();
 
-        int[] height = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+        int target = 10;
+        int[] position = {8, 6};
+        int[] speed = {2, 3};
 
-        System.out.println(trw.trap(height));
+        System.out.println(carFleet.carFleet(target, position, speed));
 
 
     }
