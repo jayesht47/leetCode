@@ -1,4 +1,7 @@
+.idea/
 /src/main/java/test.java
 /.idea/
 /src/main/java/stack/Driver.java
 .idea/compiler.xml
+*.class
+.idea/runConfigurations.xml
