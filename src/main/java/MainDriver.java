@@ -1,17 +1,16 @@
 import stack.CarFleet;
 import stack.DailyTemperature;
+import stack.LargestRectHistogram;
 
 public class MainDriver {
 
     public static void main(String[] args) {
 
-        CarFleet carFleet = new CarFleet();
+        LargestRectHistogram lrh = new LargestRectHistogram();
 
-        int target = 10;
-        int[] position = {8, 6};
-        int[] speed = {2, 3};
+        int[] heights = {2, 4};
 
-        System.out.println(carFleet.carFleet(target, position, speed));
+        System.out.println(lrh.largestRectangleArea(heights));
 
 
     }
