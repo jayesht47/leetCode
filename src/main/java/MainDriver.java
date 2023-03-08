@@ -1,7 +1,4 @@
-import algorithms.Search2DMatrix;
-import stack.CarFleet;
-import stack.DailyTemperature;
-import stack.LargestRectHistogram;
+import binarysearch.Search2DMatrix;
 
 public class MainDriver {
 
