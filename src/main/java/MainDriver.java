@@ -1,16 +1,16 @@
 import binarysearch.KokoEatingBananas;
+import binarysearch.MinInRotataedAr;
 import binarysearch.Search2DMatrix;
 
 public class MainDriver {
 
     public static void main(String[] args) {
 
-        KokoEatingBananas keb = new KokoEatingBananas();
+        MinInRotataedAr mir = new MinInRotataedAr();
 
-        int[] piles = {30,11,23,4,20};
-        int h = 5;
+        int[] nums = {4,5,6,7,0,1,2};
 
-        System.out.println(keb.minEatingSpeed(piles,h));
+        System.out.println(mir.findMin(nums));
 
 
     }
