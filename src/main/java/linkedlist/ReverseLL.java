@@ -1,10 +1,9 @@
 package linkedlist;
 
-import java.util.Stack;
 
 /**
- *https://leetcode.com/problems/reverse-linked-list
- * Solution using stack and O(2n) time O(n) space
+ * https://leetcode.com/problems/reverse-linked-list
+ * Solution using O(n) time O(1) space
  */
 public class ReverseLL {
     public static class ListNode {
@@ -25,20 +24,19 @@ public class ReverseLL {
     }
 
     public static ListNode reverseList(ListNode head) {
+
         if (head == null) return null;
-        Stack<ListNode> mem = new Stack<>();
-        ListNode next = head;
-        while (next != null) {
-            mem.push(next);
-            next = next.next;
+
+        ListNode prev = null;
+        ListNode current = head;
+
+        while (current != null) {
+            ListNode next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
         }
-        ListNode node;
-        ListNode res = mem.peek();
-        while (!mem.isEmpty()) {
-            node = mem.pop();
-            node.next = mem.size() > 0 ? mem.peek() : null;
-        }
-        return res;
+        return prev;
     }
 
 }
