@@ -3,7 +3,7 @@ package linkedlist;
 
 /**
  * https://leetcode.com/problems/reverse-linked-list
- * Solution using O(n) time O(1) space
+ * Solution using recursion
  */
 public class ReverseLL {
     public static class ListNode {
@@ -24,19 +24,17 @@ public class ReverseLL {
     }
 
     public static ListNode reverseList(ListNode head) {
+        ListNode res = rev(head, null);
+        return res;
+    }
 
-        if (head == null) return null;
-
-        ListNode prev = null;
-        ListNode current = head;
-
-        while (current != null) {
-            ListNode next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
-        }
-        return prev;
+    private static ListNode rev(ListNode node, ListNode prev) {
+        if (node == null) return prev;
+        ListNode next = node.next;
+        node.next = prev;
+        prev = node;
+        node = next;
+        return rev(node, prev);
     }
 
 }
