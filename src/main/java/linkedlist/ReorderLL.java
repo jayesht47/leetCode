@@ -10,17 +10,18 @@ public class ReorderLL {
 
     public void reorderList(ListNode head) {
 
-        //Getting midNode using 2 pointer approach
         ListNode slowNode = head;
-        ListNode fastNode = head;
+        ListNode fastNode = head.next;
 
         while (fastNode != null && fastNode.next != null) {
             slowNode = slowNode.next;
             fastNode = fastNode.next.next;
         }
 
+        System.out.println("test1");
+
         ListNode secondHead = slowNode.next;
-        ListNode prev = slowNode.next =null;
+        ListNode prev = slowNode.next;
 
         //Reversing second half of the list
         while (secondHead != null) {
@@ -29,17 +30,8 @@ public class ReorderLL {
             prev = secondHead;
             secondHead = temp;
         }
-        //Reordering according to pattern
-        secondHead = prev;
-        ListNode firstHead = head;
-        while (secondHead != null) {
-            ListNode first = firstHead.next;
-            ListNode second = secondHead.next;
-            firstHead.next = secondHead;
-            secondHead.next = first;
-            firstHead = first;
-            secondHead = second;
-        }
+        System.out.println("test1");
+
     }
 
 }
