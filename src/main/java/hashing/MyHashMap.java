@@ -1,24 +1,16 @@
 package hashing;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * HashMap Impl with open address hash collision resolution
- *
- * Note: This approach has a problem with handling hash collision as the open address implementation done
- * is linear hence consider the following scenario
- * Trying to insert Pair(a,oldVal) into hashmap
- * hash for element a is calculated to be 111 but in our array 111 is already occupied
- * hence we look for 112 which is also occupied now since 113rd element is empty we push the pair containing
- * a as key in 113rd index.
- * The Pair whose key's hash was at 112 index gets removed.
- * Now we get a call to put a new Pair (a,newVal)
- * so Ideally the 113rd element should be replaced but what ends up happening is
- * since 112nd node is empty we insert Pair(a,newVal) at 112 which results in duplicates and
- * also possible incorrect resolution of values when fetching via get if we do a reHash in between
+ * https://leetcode.com/problems/design-hashmap
  */
 public class MyHashMap {
 
-    class BasicPair {
+    public class BasicPair {
         private Integer key;
         private Integer value;
 
@@ -31,11 +23,11 @@ public class MyHashMap {
 
     private int capacity;
     private int size;
-    private BasicPair[] hashMap;
+    private List<BasicPair>[] hashMap;
 
     public MyHashMap() {
         capacity = 4;
-        hashMap = new BasicPair[capacity];
+        hashMap = new List[capacity];
         size = 0;
     }
 
@@ -44,58 +36,80 @@ public class MyHashMap {
         return key % capacity;
     }
 
+    private void deepCopyList(List<BasicPair> list1, List<BasicPair> list2) {
+        for (int i = 0; i < list1.size(); i++) {
+            if (list1.get(i) != null)
+                list2.add(new BasicPair(list1.get(i).key, list1.get(i).value));
+        }
+    }
+
     private void reHash() {
-        BasicPair[] oldMap = new BasicPair[hashMap.length];
+        List[] oldMap = new List[hashMap.length];
         for (int i = 0; i < oldMap.length; i++) {
-            if (hashMap[i] != null)
-                oldMap[i] = new BasicPair(hashMap[i].key, hashMap[i].value);
+            if (hashMap[i] != null) {
+                List<BasicPair> list = new ArrayList<>();
+                deepCopyList(hashMap[i], list);
+                oldMap[i] = list;
+            }
         }
         capacity *= 2;
-        hashMap = new BasicPair[capacity];
+        hashMap = new List[capacity];
         size = 0;
         for (int i = 0; i < oldMap.length; i++) {
-            if (oldMap[i] != null)
-                put(oldMap[i].key, oldMap[i].value);
+            if (oldMap[i] != null) {
+                List<BasicPair> list = oldMap[i];
+                list.forEach(basicPair -> put(basicPair.key, basicPair.value));
+            }
         }
     }
 
     public void put(int key, int value) {
         int index = hash(key);
-
-        while (true) {
-            if (hashMap[index] == null) {
-                hashMap[index] = new BasicPair(key, value);
-                size++;
-                if (size >= (capacity / 2)) reHash();
-                return;
-            } else if (hashMap[index].key == key) {
-                hashMap[index].value = value;
-                return;
+        if (hashMap[index] == null) {
+            ArrayList<BasicPair> arr = new ArrayList<>();
+            arr.add(new BasicPair(key, value));
+            hashMap[index] = arr;
+        } else {
+            List<BasicPair> list = hashMap[index];
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i) != null && list.get(i).key == key) {
+                    list.get(i).value = value;
+                    if (size >= capacity / 2) reHash();
+                    return;
+                }
             }
-            index++;
-            index %= capacity;
+            hashMap[index].add(new BasicPair(key, value));
         }
+        size++;
+        if (size >= capacity / 2) reHash();
     }
 
     public int get(int key) {
         int index = hash(key);
-        while (hashMap[index] != null) {
-            if (hashMap[index].key == key) return hashMap[index].value;
-            index++;
-            index %= capacity;
+        if (hashMap[index] != null) {
+            for (int i = 0; i < hashMap[index].size(); i++) {
+                if (hashMap[index].get(i) != null && hashMap[index].get(i).key == key)
+                    return hashMap[index].get(i).value;
+            }
         }
         return -1;
     }
 
     public void remove(int key) {
         int index = hash(key);
-        while (hashMap[index] != null) {
-            if (hashMap[index].key == key) {
-                hashMap[index] = null;
-                size--;
+        if (hashMap[index] != null) {
+            for (int i = 0; i < hashMap[index].size(); i++) {
+                if (hashMap[index].get(i) != null && hashMap[index].get(i).key == key) {
+                    hashMap[index].set(i, null);
+                    size--;
+                }
             }
-            index++;
-            index %= capacity;
+            for (BasicPair bp : hashMap[index]) {
+                if (bp != null) {
+                    return;
+                }
+            }
+            hashMap[index] = null;
         }
     }
 }
